@@ -1,5 +1,6 @@
 # STM32duino-bootloader
-
+## This fork objective is to create a version of the bootloader that works with the Olimexino STM32
+### Original readme:
 Please Note. This code does not work with all STM32F103 Boards
 
 Also Note. Use GCC 4.8 (not 4.9 or newer, as these versions have more aggressive optimisation which causes hardware registers not be read correctly and consequently the bootloader does not work)
