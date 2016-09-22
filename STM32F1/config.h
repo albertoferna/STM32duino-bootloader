@@ -43,7 +43,7 @@
 
 
 // The USB clock is the same for all boards
-#define RCC_APB1ENR_USB_CLK   0x00800000 
+#define RCC_APB1ENR_USB_CLK   0x00800000
 
 
 
@@ -72,21 +72,21 @@
 
 /* Porting information Please read.
 
-	These defineds are use to setup the hardware of the GPIO. 
+	These defineds are use to setup the hardware of the GPIO.
 	See http://www.st.com/web/en/resource/technical/document/reference_manual/CD00171190.pdf
 
 	Two GPIO pins need to be defined, the LED and the Button.
-	
+
 	For each pin, the following is required
-	
+
 	LED_BANK, this is the GPIO port, e.g. GPIOA,GPIOB, GPIOC etc etc etc
 	LED_PIN, this is the pin number e.g PB1 = 1
 	LED_ON_STATE is whether the pin needs to be 1 or 0 for the LED to be lit, this is needed because on some boards the led is wired between Vcc and the Pin
 	instead of from the pin to GND
-	
-	BUTTON_BANK   Port name of the pin used for the button 
-	#define BUTTON_PIN  
-	#define BUTTON_PRESSED_STATE 1	
+
+	BUTTON_BANK   Port name of the pin used for the button
+	#define BUTTON_PIN
+	#define BUTTON_PRESSED_STATE 1
 */
 
 #if defined TARGET_MAPLE_MINI
@@ -95,36 +95,39 @@
 
 	#define LED_BANK         GPIOB
 	#define LED_PIN          1
-	#define LED_ON_STATE	 1	
+	#define LED_ON_STATE	 1
 
 	/* On the Mini, BUT is PB8 */
 	#define BUTTON_BANK      GPIOB
 	#define BUTTON_PIN           8
 	#define BUTTON_PRESSED_STATE 1
-	
+
 	/* USB Disc Pin Setup.   USB DISC is PB9 */
 	#define USB_DISC_BANK       GPIOB
 	#define USB_DISC_PIN            9
-	
+
 #elif defined TARGET_MAPLE_REV3
 
 	#warning "Target MAPLE_REV3"
 
 // Flag that this type of board has the custom maple disconnect hardware
+// Previous settings did not seem to match schematic of MAPLE_REV3
+// This are changed to reflect harware in Olimexino that seem equal to
+// MAPLE_REV3 schematic
 	#define HAS_MAPLE_HARDWARE 1
-	
-	#define LED_BANK         GPIOB
-	#define LED_PIN              1
+
+	#define LED_BANK         GPIOA
+	#define LED_PIN              5
 	#define LED_ON_STATE	 1
 
-	#define BUTTON_BANK      GPIOB
-	#define BUTTON_PIN           8
-	#define BUTTON_PRESSED_STATE 1	
+	#define BUTTON_BANK      GPIOC
+	#define BUTTON_PIN           9
+	#define BUTTON_PRESSED_STATE 1
 
-	/* USB Disc Pin Setup.   USB DISC is PB9 */
-	#define USB_DISC_BANK         GPIOB
-	#define USB_DISC_PIN              9
-	
+	/* USB Disc Pin Setup.   USB DISC is PC12 */
+	#define USB_DISC_BANK         GPIOC
+	#define USB_DISC_PIN              12
+
 #elif defined TARGET_MAPLE_REV5
 
 // Flag that this type of board has the custom maple disconnect hardware
@@ -141,23 +144,23 @@
 	/* USB Disc Pin Setup.   USB DISC is PB9 */
 	#define USB_DISC_BANK         GPIOB
 	#define USB_DISC_PIN              9
-	
+
 #elif defined TARGET_GENERIC_F103_PC13
-	
-	#define LED_BANK			GPIOC 
+
+	#define LED_BANK			GPIOC
 	#define LED_PIN 			13
 	#define LED_ON_STATE		0
 
 	// Button (if you have one)
-	
+
 	#define BUTTON_BANK GPIOC
 	#define BUTTON_PIN 14
 	#define BUTTON_PRESSED_STATE 1
-	
-	
+
+
 #elif defined TARGET_GENERIC_F103_PG15
-	
-	#define LED_BANK			GPIOG 
+
+	#define LED_BANK			GPIOG
 	#define LED_PIN 			15
 	#define LED_ON_STATE		1
 
@@ -165,10 +168,10 @@
 	#define BUTTON_BANK GPIOC
 	#define BUTTON_PIN 14
 	#define BUTTON_PRESSED_STATE 1
-	
+
 #elif defined TARGET_GENERIC_F103_PD2
-	
-	#define LED_BANK			GPIOD 
+
+	#define LED_BANK			GPIOD
 	#define LED_PIN 			2
 	#define LED_ON_STATE		1
 
@@ -176,10 +179,10 @@
 	#define BUTTON_BANK GPIOC
 	#define BUTTON_PIN 14
 	#define BUTTON_PRESSED_STATE 1
-	
+
 #elif defined TARGET_GENERIC_F103_PD1
-	
-	#define LED_BANK			GPIOD 
+
+	#define LED_BANK			GPIOD
 	#define LED_PIN 			1
 	#define LED_ON_STATE		1
 
@@ -189,8 +192,8 @@
 	#define BUTTON_PRESSED_STATE 1
 
 #elif defined TARGET_GENERIC_F103_PA1
-	
-	#define LED_BANK			GPIOA 
+
+	#define LED_BANK			GPIOA
 	#define LED_PIN 			1
 	#define LED_ON_STATE		1
 
@@ -200,8 +203,8 @@
 	#define BUTTON_PRESSED_STATE 1
 
 #elif defined TARGET_GENERIC_F103_PB9
-	
-	#define LED_BANK			GPIOB 
+
+	#define LED_BANK			GPIOB
 	#define LED_PIN 			9
 	#define LED_ON_STATE		1
 
@@ -211,57 +214,57 @@
 	#define BUTTON_PRESSED_STATE 1
 
 #elif defined TARGET_GENERIC_F103_PE2
-	
-	#define LED_BANK			GPIOE 
+
+	#define LED_BANK			GPIOE
 	#define LED_PIN 			2
 	#define LED_ON_STATE		1
 
 #elif defined TARGET_GENERIC_F103_PA9
-	
-	#define LED_BANK			GPIOA 
+
+	#define LED_BANK			GPIOA
 	#define LED_PIN 			9
 	#define LED_ON_STATE		1
-	
+
 #elif defined TARGET_GENERIC_F103_PE5
-	
-	#define LED_BANK			GPIOE 
+
+	#define LED_BANK			GPIOE
 	#define LED_PIN 			5
-	#define LED_ON_STATE		1	
-	
+	#define LED_ON_STATE		1
+
 	#define BUTTON_BANK GPIOD
 	#define BUTTON_PIN 2
 	#define BUTTON_PRESSED_STATE 1
-	
+
 #elif defined TARGET_GENERIC_F103_PE5_BUTTON_PA0
-	
-	#define LED_BANK			GPIOE 
+
+	#define LED_BANK			GPIOE
 	#define LED_PIN 			5
-	#define LED_ON_STATE		1	
-	
+	#define LED_ON_STATE		1
+
 	#define BUTTON_BANK GPIOA
 	#define BUTTON_PIN 0
-	#define BUTTON_PRESSED_STATE 1	
+	#define BUTTON_PRESSED_STATE 1
 
 #elif defined TARGET_GENERIC_F103_PB7
-	
-	#define LED_BANK			GPIOB 
+
+	#define LED_BANK			GPIOB
 	#define LED_PIN 			7
-	#define LED_ON_STATE		1	
+	#define LED_ON_STATE		1
 
 #elif defined TARGET_GENERIC_F103_PB0
-	
-	#define LED_BANK			GPIOB 
+
+	#define LED_BANK			GPIOB
 	#define LED_PIN 		0
-	#define LED_ON_STATE		1	
+	#define LED_ON_STATE		1
 	#define BOOTLOADER_WAIT 30
 
 #elif defined TARGET_STBEE
-	
+
 	#define HAS_MAPLE_HARDWARE 	1
 
-	#define LED_BANK		GPIOD 
+	#define LED_BANK		GPIOD
 	#define LED_PIN 		4
-	#define LED_ON_STATE		0	
+	#define LED_ON_STATE		0
 
 	/* BUTTON is PA0 (pull down) */
 	#define BUTTON_BANK		GPIOA
@@ -274,13 +277,13 @@
 
 	/* CRISTAL 12MHz */
 	#define XTAL12M		1
-	
+
 #elif defined TARGET_NAZE32
-	
-	#define LED_BANK			GPIOB 
+
+	#define LED_BANK			GPIOB
 	#define LED_PIN 			3
 	#define LED_ON_STATE		0
-	
+
 #else
 	#error "No config for this target"
 #endif
